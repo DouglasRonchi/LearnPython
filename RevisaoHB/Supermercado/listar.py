@@ -32,9 +32,10 @@ while True:
             1 - Frutas
             2 - Verduras
             3 - Legumes
+            4 - Todas
             0 - Sair
             Escolha: """))
-        if opcao != 0 and opcao != 1 and opcao != 2 and opcao != 3:
+        if opcao != 0 and opcao != 1 and opcao != 2 and opcao != 3 and opcao != 4:
             raise Exception('Opcao Invalida')
     except Exception as e:
         print('Dado invalido, tente novamente...')
@@ -46,5 +47,9 @@ while True:
             listar_verduras()
         elif opcao == 3:
             listar_legumes()
+        elif opcao == 4:
+            listar_frutas()
+            listar_verduras()
+            listar_legumes()            
         elif opcao == 0:
             break
