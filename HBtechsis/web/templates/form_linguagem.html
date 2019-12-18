@@ -1,0 +1,35 @@
+{% extends 'layout.html'%}
+
+{% block content %}
+<h1 class="text-center display-4 mt-3">Cadastrar / Alterar Linguagem</h1>
+
+<div class="container-fluid col-md-4 offset-4">
+  <form action="/salvar_linguagem" method="POST">
+    <div class="form-group">
+      <label for="">ID</label>
+      <input type="number" class="form-control" name="id" readonly value="{{linguagem[0] if 'id' in request.args.keys() else ''}}">
+    </div>
+
+    <div class="form-group">
+      <label for="">Nome</label>
+      <input type="text" class="form-control" name="nome" value="{{linguagem[1] if 'id' in request.args.keys() else ''}}">
+    </div>
+
+    <div class="form-group">
+      <label for="">Descrição</label>
+      <input type="text" class="form-control" name="descricao" value="{{linguagem[2] if 'id' in request.args.keys() else ''}}">
+    </div>
+    
+    {% if ('id' in request.args.keys()) %}
+    <input type="hidden" name="editar" value="1">
+    <button type="submit" class="btn btn-primary btn-block">Alterar</button>
+    {% else %}
+    <input type="hidden" name="salvar" value="2">
+    <button type="submit" class="btn btn-primary btn-block">Salvar</button>
+    {% endif %}
+  </form>
+</div>
+
+
+
+{% endblock %}

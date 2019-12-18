@@ -1,0 +1,63 @@
+{% extends 'layout.html'%}
+
+
+{% block content %}
+<h1 class="text-center display-4 mt-3">Cadastrar / Alterar Funcionario</h1>
+
+<div class="container-fluid col-md-4 offset-4">
+  <form action="/salvar_funcionario" method="POST">
+
+    <div class="form-group">
+      <label for="">ID</label>
+      <input type="number" class="form-control" name="id" readonly value="{{funcionario[0] if 'id' in request.args.keys() else ''}}">
+    </div>
+
+    <div class="form-group">
+      <label for="">Nome</label>
+      <input type="text" class="form-control" name="nome" value="{{funcionario[1] if 'id' in request.args.keys() else ''}}">
+    </div>
+
+    <div class="form-group">
+      <label for="">CPF</label>
+      <input type="text" class="form-control" name="cpf" value="{{funcionario[2] if 'id' in request.args.keys() else ''}}">
+    </div>
+
+    <div class="form-group">
+      <label for="">Número de registro</label>
+      <input class="form-control" name="num_registro" value="{{funcionario[5] if 'id' in request.args.keys() else ''}}">
+    </div>
+
+    <div class="form-group">
+      <label for="">Linguagem</label>
+      <select class="form-control" name="linguagem" id="">
+      {% for i in lista_ling %}
+        <option value="{{i[1]}}">{{i[1]}}</option>
+      {% endfor %}
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="">Equipe</label>
+      <select class="form-control" name="equipe">
+      {% for i in lista_equi %}
+        <option value="{{i[1]}}">{{i[1]}}</option>
+      {% endfor %}
+      </select>
+    </div>
+    
+    {% if ('id' in request.args.keys()) %}
+    <input type="hidden" name="editar" value="1">
+    <button type="submit" class="btn btn-primary btn-block">Alterar</button>
+    {% else %}
+    <input type="hidden" name="salvar" value="2">
+    <button type="submit" class="btn btn-primary btn-block">Salvar</button>
+    {% endif %}  
+  </form>
+</div>
+
+
+
+</div>
+
+
+{% endblock %}
